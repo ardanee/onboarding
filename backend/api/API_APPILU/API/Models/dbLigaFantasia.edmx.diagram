@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d5020d5128e04f549eb392706072ea5d" Name="Diagram1" ZoomLevel="68">
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTAudit" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTCategoriaJugador" Width="1.5" PointX="7.5" PointY="23.5" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTEquipoRonda" Width="1.5" PointX="9.75" PointY="12.375" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTEstadoRonda" Width="1.5" PointX="5.25" PointY="12.75" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTInstitucion" Width="1.5" PointX="0.75" PointY="12.25" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTJugador" Width="1.5" PointX="8.25" PointY="18.25" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTJugadorLiga" Width="1.5" PointX="10.5" PointY="18.125" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTLiga" Width="1.5" PointX="5.25" PointY="17.25" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTMetricaCategoria" Width="1.5" PointX="9.75" PointY="23.5" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTMiembroEquipoLiga" Width="1.5" PointX="12.75" PointY="15.625" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTPermiso" Width="1.5" PointX="10" PointY="29" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTResultadoRonda" Width="1.5" PointX="12.75" PointY="20.875" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTRolPermiso" Width="1.5" PointX="12.25" PointY="26.25" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTRolUsuario" Width="1.5" PointX="5.25" PointY="24.25" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTRondaLiga" Width="1.5" PointX="7.5" PointY="12" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTUsuario" Width="1.5" PointX="3" PointY="23.25" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTCategoriaJugadores_LFTLiga" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTJugadoresLiga_LFTCategoriaJugadores" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTMetricaCategoría_LFTCategoriaJugadores" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTEquipoRonda_LFTRondaLiga" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTMiembroEquipoLiga_LFTEquipoRonda" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTRondaLiga_LFTEstadoRonda" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTJugadores_LFTInstitucion" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTLiga_LFTInstitucion" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTUsuario_LFTInstitucion" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTJugadoresGlobal_LFTUsuario" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTJugadoresLiga_LFTJugadoresGlobal" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTJugadoresLiga_LFTLiga" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTMiembrosEquipoLiga_LFTJugadoresLiga" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTResultadoRonda_LFTJugadorLiga" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTLiga_LFTUsuario" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTRondaLiga_LFTLiga" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTResultadoRonda_LFTMetricaCategoria" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTRolPermiso_LFTPermiso" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTResultadoRonda_LFTRondaLiga" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTRolUsuario_LFTUsuario" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTHistoriaPrecioRondaJugador" Width="1.5" PointX="15.75" PointY="15.75" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTHistoriaPrecioRondaJugador_LFTJugadorLiga" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTHistoriaPrecioRondaJugador_LFTRondaLiga" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.ActiveDirectory" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTPlantillaCorreo" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="dbLigaFantasiaModel.LFTRol" Width="1.5" PointX="5.375" PointY="1" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTRolPermiso_LFTTRol1" />
+        <AssociationConnector Association="dbLigaFantasiaModel.FK_LFTRolUsuario_LFTTRol1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

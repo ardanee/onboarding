@@ -1,0 +1,2162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbLigaFantasiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActiveDirectory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="Puesto" Type="nvarchar" MaxLength="512" />
+          <Property Name="Area" Type="nvarchar" MaxLength="512" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="512" />
+          <Property Name="CodigoScilu" Type="int" />
+          <Property Name="DPI" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LFTAudit">
+          <Key>
+            <PropertyRef Name="CodigoAudit" />
+          </Key>
+          <Property Name="CodigoAudit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoUsuario" Type="int" Nullable="false" />
+          <Property Name="CodigoIdentidad" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="NombreTabla" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="NombreCampo" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Accion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ValorAnterior" Type="nvarchar(max)" />
+          <Property Name="ValorNuevo" Type="nvarchar(max)" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="Latitud" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="Longitud" Type="decimal" Precision="9" Scale="6" />
+        </EntityType>
+        <EntityType Name="LFTCategoriaJugador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdLiga" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="255" />
+          <Property Name="MinimoJugadores" Type="int" />
+          <Property Name="MaximoJugadores" Type="int" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="Eliminado" Type="bit" />
+          <Property Name="CodigoUsuarioInserto" Type="int" />
+          <Property Name="UsuarioInserto" Type="varchar" MaxLength="50" />
+          <Property Name="FechaInserto" Type="date" />
+          <Property Name="CodigoUsuarioModifico" Type="int" />
+          <Property Name="UsuarioModifico" Type="varchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="date" />
+        </EntityType>
+        <EntityType Name="LFTEquipoRonda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRonda" Type="int" />
+          <Property Name="CodigoUsuarioEntrenador" Type="int" />
+          <Property Name="Presupuesto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="CodigoUsuarioInserto" Type="int" Nullable="false" />
+          <Property Name="UsuarioInserto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaInserto" Type="datetime" Nullable="false" />
+          <Property Name="CodigoUsuarioModifico" Type="int" />
+          <Property Name="UsuarioModifico" Type="varchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LFTEstadoRonda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Descripcion" Type="varchar(max)" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="Eliminado" Type="bit" />
+          <Property Name="UsuarioInserto" Type="varchar" MaxLength="50" />
+          <Property Name="FechaInserto" Type="datetime" />
+          <Property Name="UsuarioModifico" Type="varchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LFTHistoriaPrecioRondaJugador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdJugadorLiga" Type="int" Nullable="false" />
+          <Property Name="IdRonda" Type="int" Nullable="false" />
+          <Property Name="PrecioInicial" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PrecioFinal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CodigoUsuarioInserto" Type="int" />
+          <Property Name="UsuarioInserto" Type="varchar" MaxLength="50" />
+          <Property Name="FechaInserto" Type="datetime" />
+          <Property Name="CodigoUsuarioModifico" Type="int" />
+          <Property Name="UsuarioModifico" Type="varchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LFTInstitucion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="InformacionAdicional" Type="varchar(max)" />
+          <Property Name="LogoUrl" Type="varchar(max)" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="CodigoUsuarioInserto" Type="int" />
+          <Property Name="UsuarioInserto" Type="varchar" MaxLength="50" />
+          <Property Name="FechaInserto" Type="datetime" />
+          <Property Name="CodigoUsuarioModifico" Type="int" />
+          <Property Name="UsuarioModifico" Type="varchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LFTJugador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdInstitucion" Type="int" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="SobreMi" Type="varchar(max)" />
+          <Property Name="CodigoUsuario" Type="int" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="Eliminado" Type="bit" />
+          <Property Name="CodigoUsuarioInserto" Type="int" />
+          <Property Name="UsuarioInserto" Type="varchar" MaxLength="50" />
+          <Property Name="FechaInserto" Type="datetime" />
+          <Property Name="CodigoUsuarioModifico" Type="int" />
+          <Property Name="UsuarioModifico" Type="varchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LFTJugadorLiga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdJugador" Type="int" Nullable="false" />
+          <Property Name="IdLiga" Type="int" Nullable="false" />
+          <Property Name="IdCategoriaJugador" Type="int" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PrecioInicial" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="Eliminado" Type="bit" />
+          <Property Name="CodigoUsuarioInserto" Type="int" />
+          <Property Name="UsuarioInserto" Type="varchar" MaxLength="50" />
+          <Property Name="FechaInserto" Type="datetime" />
+          <Property Name="CodigoUsuarioModifico" Type="int" />
+          <Property Name="UsuarioModifico" Type="varchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LFTLiga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="CodigoUsuarioAdministrador" Type="int" Nullable="false" />
+          <Property Name="IdInstitucion" Type="int" Nullable="false" />
+          <Property Name="Publico" Type="bit" Nullable="false" />
+          <Property Name="FechaInicio" Type="date" />
+          <Property Name="CantidadRecurrencia" Type="int" />
+          <Property Name="UnidadRecurrencia" Type="varchar" MaxLength="1" />
+          <Property Name="CantidadRondas" Type="int" />
+          <Property Name="Editable" Type="bit" />
+          <Property Name="EditarPlantilla" Type="bit" />
+          <Property Name="PresupuestoInicial" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Password" Type="varchar" MaxLength="255" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="CodigoUsuarioInserto" Type="int" />
+          <Property Name="UsuarioInserto" Type="varchar" MaxLength="50" />
+          <Property Name="FechaInserto" Type="date" />
+          <Property Name="CodigoUsuarioModifico" Type="int" />
+          <Property Name="UsuarioModifico" Type="varchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="date" />
+        </EntityType>
+        <EntityType Name="LFTMetricaCategoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCategoria" Type="int" />
+          <Property Name="Nombre" Type="varchar" MaxLength="300" />
+          <Property Name="Descripcion" Type="varchar(max)" />
+          <Property Name="Puntos" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Positivo" Type="bit" />
+          <Property Name="Valuacion" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EsPorcentaje" Type="bit" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="Eliminado" Type="bit" />
+          <Property Name="CodigoUsuarioInserto" Type="int" />
+          <Property Name="UsuarioInserto" Type="varchar" MaxLength="50" />
+          <Property Name="FechaInserto" Type="datetime" />
+          <Property Name="CodigoUsuarioModifico" Type="int" />
+          <Property Name="UsuarioModifico" Type="varchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LFTMiembroEquipoLiga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdJugadorLiga" Type="int" />
+          <Property Name="IdEquipo" Type="int" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="Eliminado" Type="bit" />
+          <Property Name="CodigoUsuarioInserto" Type="int" />
+          <Property Name="UsuarioInserto" Type="varchar" MaxLength="50" />
+          <Property Name="FechaInserto" Type="datetime" />
+          <Property Name="CodigoUsuarioModifico" Type="int" />
+          <Property Name="UsuarioModifico" Type="varchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LFTPermiso">
+          <Key>
+            <PropertyRef Name="CodigoPermiso" />
+          </Key>
+          <Property Name="CodigoPermiso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Permiso" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="UsuarioInserto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaInserto" Type="datetime" Nullable="false" />
+          <Property Name="UsuarioModifico" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="datetime" />
+          <Property Name="CodigoPermisoAgrupacion" Type="int" Nullable="false" />
+          <Property Name="Icono" Type="varchar" MaxLength="52" />
+          <Property Name="Llave" Type="nvarchar" MaxLength="52" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbLigaFantasia.LF.LFTPlantillaCorreo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LFTPlantillaCorreo">
+          <Key>
+            <PropertyRef Name="CodigoPlantillaCorreo" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Activo" />
+            <PropertyRef Name="Eliminado" />
+            <PropertyRef Name="UsuarioInserto" />
+            <PropertyRef Name="FechaInserto" />
+          </Key>
+          <Property Name="CodigoPlantillaCorreo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="Plantilla" Type="text" />
+          <Property Name="Asunto" Type="nvarchar" MaxLength="512" />
+          <Property Name="Remitente" Type="nvarchar" MaxLength="512" />
+          <Property Name="CCO" Type="nvarchar" MaxLength="512" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="UsuarioInserto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaInserto" Type="datetime" Nullable="false" />
+          <Property Name="UsuarioModifico" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LFTResultadoRonda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRonda" Type="int" Nullable="false" />
+          <Property Name="IdJugadorLiga" Type="int" Nullable="false" />
+          <Property Name="IdMetrica" Type="int" Nullable="false" />
+          <Property Name="Resultado" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Puntos" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ValorObtenido" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="CodigoUsuarioInserto" Type="int" Nullable="false" />
+          <Property Name="UsuarioInserto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaInserto" Type="datetime" Nullable="false" />
+          <Property Name="CodigoUsuarioModifico" Type="int" />
+          <Property Name="UsuarioModifico" Type="varchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LFTRol">
+          <Key>
+            <PropertyRef Name="CodigoRol" />
+          </Key>
+          <Property Name="CodigoRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rol" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="UsuarioInserto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaInserto" Type="datetime" Nullable="false" />
+          <Property Name="UsuarioModifico" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LFTRolPermiso">
+          <Key>
+            <PropertyRef Name="CodigoRolPermiso" />
+          </Key>
+          <Property Name="CodigoRolPermiso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoRol" Type="int" Nullable="false" />
+          <Property Name="CodigoPermiso" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="UsuarioInserto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaInserto" Type="datetime" Nullable="false" />
+          <Property Name="UsuarioModifico" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LFTRolUsuario">
+          <Key>
+            <PropertyRef Name="CodigoRolUsuario" />
+          </Key>
+          <Property Name="CodigoRolUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoUsuario" Type="int" Nullable="false" />
+          <Property Name="CodigoRol" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="UsuarioInserto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaInserto" Type="datetime" Nullable="false" />
+          <Property Name="UsuarioModifico" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LFTRondaLiga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdLiga" Type="int" Nullable="false" />
+          <Property Name="FechaInicio" Type="date" />
+          <Property Name="FechaFin" Type="date" />
+          <Property Name="NumeroRonda" Type="int" />
+          <Property Name="Estado" Type="int" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" />
+          <Property Name="CodigoUsuarioInserto" Type="int" />
+          <Property Name="UsuarioInserto" Type="varchar" MaxLength="50" />
+          <Property Name="FechaInserto" Type="datetime" />
+          <Property Name="CodigoUsuarioModifico" Type="int" />
+          <Property Name="UsuarioModifico" Type="varchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LFTUsuario">
+          <Key>
+            <PropertyRef Name="CodigoUsuario" />
+          </Key>
+          <Property Name="CodigoUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreCompletoUsuario" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AutenticacionWindows" Type="bit" Nullable="false" />
+          <Property Name="Clave" Type="nvarchar(max)" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="CorreoElectronico" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CodigoUsuarioInserto" Type="int" />
+          <Property Name="UsuarioInserto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaInserto" Type="datetime" Nullable="false" />
+          <Property Name="CodigoUsuarioModifico" Type="int" />
+          <Property Name="UsuarioModifico" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaModifico" Type="datetime" />
+          <Property Name="NecesitaCambioDeClave" Type="bit" />
+          <Property Name="UsuarioAD" Type="varchar" MaxLength="512" />
+          <Property Name="IdInstitucion" Type="int" />
+        </EntityType>
+        <Association Name="FK_LFTCategoriaJugadores_LFTLiga">
+          <End Role="LFTLiga" Type="Self.LFTLiga" Multiplicity="1" />
+          <End Role="LFTCategoriaJugador" Type="Self.LFTCategoriaJugador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTCategoriaJugador">
+              <PropertyRef Name="IdLiga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTEquipoRonda_LFTRondaLiga">
+          <End Role="LFTRondaLiga" Type="Self.LFTRondaLiga" Multiplicity="0..1" />
+          <End Role="LFTEquipoRonda" Type="Self.LFTEquipoRonda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTRondaLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTEquipoRonda">
+              <PropertyRef Name="IdRonda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTHistoriaPrecioRondaJugador_LFTJugadorLiga">
+          <End Role="LFTJugadorLiga" Type="Self.LFTJugadorLiga" Multiplicity="1" />
+          <End Role="LFTHistoriaPrecioRondaJugador" Type="Self.LFTHistoriaPrecioRondaJugador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTJugadorLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTHistoriaPrecioRondaJugador">
+              <PropertyRef Name="IdJugadorLiga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTHistoriaPrecioRondaJugador_LFTRondaLiga">
+          <End Role="LFTRondaLiga" Type="Self.LFTRondaLiga" Multiplicity="1" />
+          <End Role="LFTHistoriaPrecioRondaJugador" Type="Self.LFTHistoriaPrecioRondaJugador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTRondaLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTHistoriaPrecioRondaJugador">
+              <PropertyRef Name="IdRonda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTJugadores_LFTInstitucion">
+          <End Role="LFTInstitucion" Type="Self.LFTInstitucion" Multiplicity="0..1" />
+          <End Role="LFTJugador" Type="Self.LFTJugador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTInstitucion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTJugador">
+              <PropertyRef Name="IdInstitucion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTJugadoresGlobal_LFTUsuario">
+          <End Role="LFTUsuario" Type="Self.LFTUsuario" Multiplicity="0..1" />
+          <End Role="LFTJugador" Type="Self.LFTJugador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTUsuario">
+              <PropertyRef Name="CodigoUsuario" />
+            </Principal>
+            <Dependent Role="LFTJugador">
+              <PropertyRef Name="CodigoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTJugadoresLiga_LFTCategoriaJugadores">
+          <End Role="LFTCategoriaJugador" Type="Self.LFTCategoriaJugador" Multiplicity="0..1" />
+          <End Role="LFTJugadorLiga" Type="Self.LFTJugadorLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTCategoriaJugador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTJugadorLiga">
+              <PropertyRef Name="IdCategoriaJugador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTJugadoresLiga_LFTJugadoresGlobal">
+          <End Role="LFTJugador" Type="Self.LFTJugador" Multiplicity="1" />
+          <End Role="LFTJugadorLiga" Type="Self.LFTJugadorLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTJugador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTJugadorLiga">
+              <PropertyRef Name="IdJugador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTJugadoresLiga_LFTLiga">
+          <End Role="LFTLiga" Type="Self.LFTLiga" Multiplicity="1" />
+          <End Role="LFTJugadorLiga" Type="Self.LFTJugadorLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTJugadorLiga">
+              <PropertyRef Name="IdLiga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTLiga_LFTInstitucion">
+          <End Role="LFTInstitucion" Type="Self.LFTInstitucion" Multiplicity="1" />
+          <End Role="LFTLiga" Type="Self.LFTLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTInstitucion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTLiga">
+              <PropertyRef Name="IdInstitucion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTLiga_LFTUsuario">
+          <End Role="LFTUsuario" Type="Self.LFTUsuario" Multiplicity="1" />
+          <End Role="LFTLiga" Type="Self.LFTLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTUsuario">
+              <PropertyRef Name="CodigoUsuario" />
+            </Principal>
+            <Dependent Role="LFTLiga">
+              <PropertyRef Name="CodigoUsuarioAdministrador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTMetricaCategoría_LFTCategoriaJugadores">
+          <End Role="LFTCategoriaJugador" Type="Self.LFTCategoriaJugador" Multiplicity="0..1" />
+          <End Role="LFTMetricaCategoria" Type="Self.LFTMetricaCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTCategoriaJugador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTMetricaCategoria">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTMiembroEquipoLiga_LFTEquipoRonda">
+          <End Role="LFTEquipoRonda" Type="Self.LFTEquipoRonda" Multiplicity="0..1" />
+          <End Role="LFTMiembroEquipoLiga" Type="Self.LFTMiembroEquipoLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTEquipoRonda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTMiembroEquipoLiga">
+              <PropertyRef Name="IdEquipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTMiembrosEquipoLiga_LFTJugadoresLiga">
+          <End Role="LFTJugadorLiga" Type="Self.LFTJugadorLiga" Multiplicity="0..1" />
+          <End Role="LFTMiembroEquipoLiga" Type="Self.LFTMiembroEquipoLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTJugadorLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTMiembroEquipoLiga">
+              <PropertyRef Name="IdJugadorLiga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTResultadoRonda_LFTJugadorLiga">
+          <End Role="LFTJugadorLiga" Type="Self.LFTJugadorLiga" Multiplicity="1" />
+          <End Role="LFTResultadoRonda" Type="Self.LFTResultadoRonda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTJugadorLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTResultadoRonda">
+              <PropertyRef Name="IdJugadorLiga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTResultadoRonda_LFTMetricaCategoria">
+          <End Role="LFTMetricaCategoria" Type="Self.LFTMetricaCategoria" Multiplicity="1" />
+          <End Role="LFTResultadoRonda" Type="Self.LFTResultadoRonda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTMetricaCategoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTResultadoRonda">
+              <PropertyRef Name="IdMetrica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTResultadoRonda_LFTRondaLiga">
+          <End Role="LFTRondaLiga" Type="Self.LFTRondaLiga" Multiplicity="1" />
+          <End Role="LFTResultadoRonda" Type="Self.LFTResultadoRonda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTRondaLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTResultadoRonda">
+              <PropertyRef Name="IdRonda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTRolPermiso_LFTPermiso">
+          <End Role="LFTPermiso" Type="Self.LFTPermiso" Multiplicity="1" />
+          <End Role="LFTRolPermiso" Type="Self.LFTRolPermiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTPermiso">
+              <PropertyRef Name="CodigoPermiso" />
+            </Principal>
+            <Dependent Role="LFTRolPermiso">
+              <PropertyRef Name="CodigoPermiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTRolPermiso_LFTTRol">
+          <End Role="LFTRol" Type="Self.LFTRol" Multiplicity="1" />
+          <End Role="LFTRolPermiso" Type="Self.LFTRolPermiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTRol">
+              <PropertyRef Name="CodigoRol" />
+            </Principal>
+            <Dependent Role="LFTRolPermiso">
+              <PropertyRef Name="CodigoRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTRolUsuario_LFTTRol">
+          <End Role="LFTRol" Type="Self.LFTRol" Multiplicity="1" />
+          <End Role="LFTRolUsuario" Type="Self.LFTRolUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTRol">
+              <PropertyRef Name="CodigoRol" />
+            </Principal>
+            <Dependent Role="LFTRolUsuario">
+              <PropertyRef Name="CodigoRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTRolUsuario_LFTUsuario">
+          <End Role="LFTUsuario" Type="Self.LFTUsuario" Multiplicity="1" />
+          <End Role="LFTRolUsuario" Type="Self.LFTRolUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTUsuario">
+              <PropertyRef Name="CodigoUsuario" />
+            </Principal>
+            <Dependent Role="LFTRolUsuario">
+              <PropertyRef Name="CodigoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTRondaLiga_LFTEstadoRonda">
+          <End Role="LFTEstadoRonda" Type="Self.LFTEstadoRonda" Multiplicity="0..1" />
+          <End Role="LFTRondaLiga" Type="Self.LFTRondaLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTEstadoRonda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTRondaLiga">
+              <PropertyRef Name="Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTRondaLiga_LFTLiga">
+          <End Role="LFTLiga" Type="Self.LFTLiga" Multiplicity="1" />
+          <End Role="LFTRondaLiga" Type="Self.LFTRondaLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTRondaLiga">
+              <PropertyRef Name="IdLiga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTUsuario_LFTInstitucion">
+          <End Role="LFTInstitucion" Type="Self.LFTInstitucion" Multiplicity="0..1" />
+          <End Role="LFTUsuario" Type="Self.LFTUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTInstitucion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTUsuario">
+              <PropertyRef Name="IdInstitucion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="LFFPRecioInicialJugadorRonda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="LF" ReturnType="decimal">
+          <Parameter Name="PIdJugadorLiga" Type="int" Mode="In" />
+          <Parameter Name="PIdRonda" Type="int" Mode="In" />
+        </Function>
+        <Function Name="LFPCerrarRonda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="LF">
+          <Parameter Name="PIdRonda" Type="int" Mode="In" />
+          <Parameter Name="PCodigoUsuarioOpera" Type="int" Mode="In" />
+        </Function>
+        <Function Name="LFPLigasDisponiblesEntrenadorListar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="LF">
+          <Parameter Name="PIdInstitucion" Type="int" Mode="In" />
+          <Parameter Name="PCodigoUsuario" Type="int" Mode="In" />
+          <Parameter Name="PNombreLiga" Type="varchar" Mode="In" />
+          <Parameter Name="PActiva" Type="int" Mode="In" />
+        </Function>
+        <Function Name="LFPListarResultadoJugadorRonda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="LF">
+          <Parameter Name="PidRonda" Type="int" Mode="In" />
+          <Parameter Name="PidJugadorLiga" Type="int" Mode="In" />
+        </Function>
+        <Function Name="LFPTopDetalleResultadoJugadoresListar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="LF">
+          <Parameter Name="PIdJugadorLiga" Type="int" Mode="In" />
+          <Parameter Name="PIdRonda" Type="int" Mode="In" />
+        </Function>
+        <Function Name="LFPTopJugadoresListar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="LF">
+          <Parameter Name="PIdLiga" Type="int" Mode="In" />
+          <Parameter Name="PIdRonda" Type="int" Mode="In" />
+          <Parameter Name="PIdCategoria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="LFPValidacionCierreRondaListar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="LF">
+          <Parameter Name="PIdRondaLiga" Type="int" Mode="In" />
+          <Parameter Name="PIdLiga" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="dbLigaFantasiaModelStoreContainer">
+          <EntitySet Name="ActiveDirectory" EntityType="Self.ActiveDirectory" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTAudit" EntityType="Self.LFTAudit" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTCategoriaJugador" EntityType="Self.LFTCategoriaJugador" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTEquipoRonda" EntityType="Self.LFTEquipoRonda" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTEstadoRonda" EntityType="Self.LFTEstadoRonda" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTHistoriaPrecioRondaJugador" EntityType="Self.LFTHistoriaPrecioRondaJugador" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTInstitucion" EntityType="Self.LFTInstitucion" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTJugador" EntityType="Self.LFTJugador" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTJugadorLiga" EntityType="Self.LFTJugadorLiga" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTLiga" EntityType="Self.LFTLiga" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTMetricaCategoria" EntityType="Self.LFTMetricaCategoria" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTMiembroEquipoLiga" EntityType="Self.LFTMiembroEquipoLiga" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTPermiso" EntityType="Self.LFTPermiso" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTResultadoRonda" EntityType="Self.LFTResultadoRonda" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTRol" EntityType="Self.LFTRol" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTRolPermiso" EntityType="Self.LFTRolPermiso" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTRolUsuario" EntityType="Self.LFTRolUsuario" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTRondaLiga" EntityType="Self.LFTRondaLiga" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTUsuario" EntityType="Self.LFTUsuario" Schema="LF" store:Type="Tables" />
+          <EntitySet Name="LFTPlantillaCorreo" EntityType="Self.LFTPlantillaCorreo" store:Type="Tables" store:Schema="LF">
+            <DefiningQuery>SELECT 
+    [LFTPlantillaCorreo].[CodigoPlantillaCorreo] AS [CodigoPlantillaCorreo], 
+    [LFTPlantillaCorreo].[Nombre] AS [Nombre], 
+    [LFTPlantillaCorreo].[Plantilla] AS [Plantilla], 
+    [LFTPlantillaCorreo].[Asunto] AS [Asunto], 
+    [LFTPlantillaCorreo].[Remitente] AS [Remitente], 
+    [LFTPlantillaCorreo].[CCO] AS [CCO], 
+    [LFTPlantillaCorreo].[Activo] AS [Activo], 
+    [LFTPlantillaCorreo].[Eliminado] AS [Eliminado], 
+    [LFTPlantillaCorreo].[UsuarioInserto] AS [UsuarioInserto], 
+    [LFTPlantillaCorreo].[FechaInserto] AS [FechaInserto], 
+    [LFTPlantillaCorreo].[UsuarioModifico] AS [UsuarioModifico], 
+    [LFTPlantillaCorreo].[FechaModifico] AS [FechaModifico]
+    FROM [LF].[LFTPlantillaCorreo] AS [LFTPlantillaCorreo]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_LFTCategoriaJugadores_LFTLiga" Association="Self.FK_LFTCategoriaJugadores_LFTLiga">
+            <End Role="LFTLiga" EntitySet="LFTLiga" />
+            <End Role="LFTCategoriaJugador" EntitySet="LFTCategoriaJugador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTEquipoRonda_LFTRondaLiga" Association="Self.FK_LFTEquipoRonda_LFTRondaLiga">
+            <End Role="LFTRondaLiga" EntitySet="LFTRondaLiga" />
+            <End Role="LFTEquipoRonda" EntitySet="LFTEquipoRonda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTHistoriaPrecioRondaJugador_LFTJugadorLiga" Association="Self.FK_LFTHistoriaPrecioRondaJugador_LFTJugadorLiga">
+            <End Role="LFTJugadorLiga" EntitySet="LFTJugadorLiga" />
+            <End Role="LFTHistoriaPrecioRondaJugador" EntitySet="LFTHistoriaPrecioRondaJugador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTHistoriaPrecioRondaJugador_LFTRondaLiga" Association="Self.FK_LFTHistoriaPrecioRondaJugador_LFTRondaLiga">
+            <End Role="LFTRondaLiga" EntitySet="LFTRondaLiga" />
+            <End Role="LFTHistoriaPrecioRondaJugador" EntitySet="LFTHistoriaPrecioRondaJugador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTJugadores_LFTInstitucion" Association="Self.FK_LFTJugadores_LFTInstitucion">
+            <End Role="LFTInstitucion" EntitySet="LFTInstitucion" />
+            <End Role="LFTJugador" EntitySet="LFTJugador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTJugadoresGlobal_LFTUsuario" Association="Self.FK_LFTJugadoresGlobal_LFTUsuario">
+            <End Role="LFTUsuario" EntitySet="LFTUsuario" />
+            <End Role="LFTJugador" EntitySet="LFTJugador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTJugadoresLiga_LFTCategoriaJugadores" Association="Self.FK_LFTJugadoresLiga_LFTCategoriaJugadores">
+            <End Role="LFTCategoriaJugador" EntitySet="LFTCategoriaJugador" />
+            <End Role="LFTJugadorLiga" EntitySet="LFTJugadorLiga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTJugadoresLiga_LFTJugadoresGlobal" Association="Self.FK_LFTJugadoresLiga_LFTJugadoresGlobal">
+            <End Role="LFTJugador" EntitySet="LFTJugador" />
+            <End Role="LFTJugadorLiga" EntitySet="LFTJugadorLiga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTJugadoresLiga_LFTLiga" Association="Self.FK_LFTJugadoresLiga_LFTLiga">
+            <End Role="LFTLiga" EntitySet="LFTLiga" />
+            <End Role="LFTJugadorLiga" EntitySet="LFTJugadorLiga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTLiga_LFTInstitucion" Association="Self.FK_LFTLiga_LFTInstitucion">
+            <End Role="LFTInstitucion" EntitySet="LFTInstitucion" />
+            <End Role="LFTLiga" EntitySet="LFTLiga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTLiga_LFTUsuario" Association="Self.FK_LFTLiga_LFTUsuario">
+            <End Role="LFTUsuario" EntitySet="LFTUsuario" />
+            <End Role="LFTLiga" EntitySet="LFTLiga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTMetricaCategoría_LFTCategoriaJugadores" Association="Self.FK_LFTMetricaCategoría_LFTCategoriaJugadores">
+            <End Role="LFTCategoriaJugador" EntitySet="LFTCategoriaJugador" />
+            <End Role="LFTMetricaCategoria" EntitySet="LFTMetricaCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTMiembroEquipoLiga_LFTEquipoRonda" Association="Self.FK_LFTMiembroEquipoLiga_LFTEquipoRonda">
+            <End Role="LFTEquipoRonda" EntitySet="LFTEquipoRonda" />
+            <End Role="LFTMiembroEquipoLiga" EntitySet="LFTMiembroEquipoLiga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTMiembrosEquipoLiga_LFTJugadoresLiga" Association="Self.FK_LFTMiembrosEquipoLiga_LFTJugadoresLiga">
+            <End Role="LFTJugadorLiga" EntitySet="LFTJugadorLiga" />
+            <End Role="LFTMiembroEquipoLiga" EntitySet="LFTMiembroEquipoLiga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTResultadoRonda_LFTJugadorLiga" Association="Self.FK_LFTResultadoRonda_LFTJugadorLiga">
+            <End Role="LFTJugadorLiga" EntitySet="LFTJugadorLiga" />
+            <End Role="LFTResultadoRonda" EntitySet="LFTResultadoRonda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTResultadoRonda_LFTMetricaCategoria" Association="Self.FK_LFTResultadoRonda_LFTMetricaCategoria">
+            <End Role="LFTMetricaCategoria" EntitySet="LFTMetricaCategoria" />
+            <End Role="LFTResultadoRonda" EntitySet="LFTResultadoRonda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTResultadoRonda_LFTRondaLiga" Association="Self.FK_LFTResultadoRonda_LFTRondaLiga">
+            <End Role="LFTRondaLiga" EntitySet="LFTRondaLiga" />
+            <End Role="LFTResultadoRonda" EntitySet="LFTResultadoRonda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTRolPermiso_LFTPermiso" Association="Self.FK_LFTRolPermiso_LFTPermiso">
+            <End Role="LFTPermiso" EntitySet="LFTPermiso" />
+            <End Role="LFTRolPermiso" EntitySet="LFTRolPermiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTRolPermiso_LFTTRol" Association="Self.FK_LFTRolPermiso_LFTTRol">
+            <End Role="LFTRol" EntitySet="LFTRol" />
+            <End Role="LFTRolPermiso" EntitySet="LFTRolPermiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTRolUsuario_LFTTRol" Association="Self.FK_LFTRolUsuario_LFTTRol">
+            <End Role="LFTRol" EntitySet="LFTRol" />
+            <End Role="LFTRolUsuario" EntitySet="LFTRolUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTRolUsuario_LFTUsuario" Association="Self.FK_LFTRolUsuario_LFTUsuario">
+            <End Role="LFTUsuario" EntitySet="LFTUsuario" />
+            <End Role="LFTRolUsuario" EntitySet="LFTRolUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTRondaLiga_LFTEstadoRonda" Association="Self.FK_LFTRondaLiga_LFTEstadoRonda">
+            <End Role="LFTEstadoRonda" EntitySet="LFTEstadoRonda" />
+            <End Role="LFTRondaLiga" EntitySet="LFTRondaLiga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTRondaLiga_LFTLiga" Association="Self.FK_LFTRondaLiga_LFTLiga">
+            <End Role="LFTLiga" EntitySet="LFTLiga" />
+            <End Role="LFTRondaLiga" EntitySet="LFTRondaLiga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTUsuario_LFTInstitucion" Association="Self.FK_LFTUsuario_LFTInstitucion">
+            <End Role="LFTInstitucion" EntitySet="LFTInstitucion" />
+            <End Role="LFTUsuario" EntitySet="LFTUsuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbLigaFantasiaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbLigaFantasiaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LFTAudit" EntityType="dbLigaFantasiaModel.LFTAudit" />
+          <EntitySet Name="LFTCategoriaJugador" EntityType="dbLigaFantasiaModel.LFTCategoriaJugador" />
+          <EntitySet Name="LFTEquipoRonda" EntityType="dbLigaFantasiaModel.LFTEquipoRonda" />
+          <EntitySet Name="LFTEstadoRonda" EntityType="dbLigaFantasiaModel.LFTEstadoRonda" />
+          <EntitySet Name="LFTInstitucion" EntityType="dbLigaFantasiaModel.LFTInstitucion" />
+          <EntitySet Name="LFTJugador" EntityType="dbLigaFantasiaModel.LFTJugador" />
+          <EntitySet Name="LFTJugadorLiga" EntityType="dbLigaFantasiaModel.LFTJugadorLiga" />
+          <EntitySet Name="LFTLiga" EntityType="dbLigaFantasiaModel.LFTLiga" />
+          <EntitySet Name="LFTMetricaCategoria" EntityType="dbLigaFantasiaModel.LFTMetricaCategoria" />
+          <EntitySet Name="LFTMiembroEquipoLiga" EntityType="dbLigaFantasiaModel.LFTMiembroEquipoLiga" />
+          <EntitySet Name="LFTPermiso" EntityType="dbLigaFantasiaModel.LFTPermiso" />
+          <EntitySet Name="LFTResultadoRonda" EntityType="dbLigaFantasiaModel.LFTResultadoRonda" />
+          <EntitySet Name="LFTRolPermiso" EntityType="dbLigaFantasiaModel.LFTRolPermiso" />
+          <EntitySet Name="LFTRolUsuario" EntityType="dbLigaFantasiaModel.LFTRolUsuario" />
+          <EntitySet Name="LFTRondaLiga" EntityType="dbLigaFantasiaModel.LFTRondaLiga" />
+          <EntitySet Name="LFTUsuario" EntityType="dbLigaFantasiaModel.LFTUsuario" />
+          <AssociationSet Name="FK_LFTCategoriaJugadores_LFTLiga" Association="dbLigaFantasiaModel.FK_LFTCategoriaJugadores_LFTLiga">
+            <End Role="LFTLiga" EntitySet="LFTLiga" />
+            <End Role="LFTCategoriaJugador" EntitySet="LFTCategoriaJugador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTJugadoresLiga_LFTCategoriaJugadores" Association="dbLigaFantasiaModel.FK_LFTJugadoresLiga_LFTCategoriaJugadores">
+            <End Role="LFTCategoriaJugador" EntitySet="LFTCategoriaJugador" />
+            <End Role="LFTJugadorLiga" EntitySet="LFTJugadorLiga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTMetricaCategoría_LFTCategoriaJugadores" Association="dbLigaFantasiaModel.FK_LFTMetricaCategoría_LFTCategoriaJugadores">
+            <End Role="LFTCategoriaJugador" EntitySet="LFTCategoriaJugador" />
+            <End Role="LFTMetricaCategoria" EntitySet="LFTMetricaCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTEquipoRonda_LFTRondaLiga" Association="dbLigaFantasiaModel.FK_LFTEquipoRonda_LFTRondaLiga">
+            <End Role="LFTRondaLiga" EntitySet="LFTRondaLiga" />
+            <End Role="LFTEquipoRonda" EntitySet="LFTEquipoRonda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTRondaLiga_LFTEstadoRonda" Association="dbLigaFantasiaModel.FK_LFTRondaLiga_LFTEstadoRonda">
+            <End Role="LFTEstadoRonda" EntitySet="LFTEstadoRonda" />
+            <End Role="LFTRondaLiga" EntitySet="LFTRondaLiga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTJugadores_LFTInstitucion" Association="dbLigaFantasiaModel.FK_LFTJugadores_LFTInstitucion">
+            <End Role="LFTInstitucion" EntitySet="LFTInstitucion" />
+            <End Role="LFTJugador" EntitySet="LFTJugador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTLiga_LFTInstitucion" Association="dbLigaFantasiaModel.FK_LFTLiga_LFTInstitucion">
+            <End Role="LFTInstitucion" EntitySet="LFTInstitucion" />
+            <End Role="LFTLiga" EntitySet="LFTLiga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTUsuario_LFTInstitucion" Association="dbLigaFantasiaModel.FK_LFTUsuario_LFTInstitucion">
+            <End Role="LFTInstitucion" EntitySet="LFTInstitucion" />
+            <End Role="LFTUsuario" EntitySet="LFTUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTJugadoresGlobal_LFTUsuario" Association="dbLigaFantasiaModel.FK_LFTJugadoresGlobal_LFTUsuario">
+            <End Role="LFTUsuario" EntitySet="LFTUsuario" />
+            <End Role="LFTJugador" EntitySet="LFTJugador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTJugadoresLiga_LFTJugadoresGlobal" Association="dbLigaFantasiaModel.FK_LFTJugadoresLiga_LFTJugadoresGlobal">
+            <End Role="LFTJugador" EntitySet="LFTJugador" />
+            <End Role="LFTJugadorLiga" EntitySet="LFTJugadorLiga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTJugadoresLiga_LFTLiga" Association="dbLigaFantasiaModel.FK_LFTJugadoresLiga_LFTLiga">
+            <End Role="LFTLiga" EntitySet="LFTLiga" />
+            <End Role="LFTJugadorLiga" EntitySet="LFTJugadorLiga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTMiembrosEquipoLiga_LFTJugadoresLiga" Association="dbLigaFantasiaModel.FK_LFTMiembrosEquipoLiga_LFTJugadoresLiga">
+            <End Role="LFTJugadorLiga" EntitySet="LFTJugadorLiga" />
+            <End Role="LFTMiembroEquipoLiga" EntitySet="LFTMiembroEquipoLiga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTResultadoRonda_LFTJugadorLiga" Association="dbLigaFantasiaModel.FK_LFTResultadoRonda_LFTJugadorLiga">
+            <End Role="LFTJugadorLiga" EntitySet="LFTJugadorLiga" />
+            <End Role="LFTResultadoRonda" EntitySet="LFTResultadoRonda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTLiga_LFTUsuario" Association="dbLigaFantasiaModel.FK_LFTLiga_LFTUsuario">
+            <End Role="LFTUsuario" EntitySet="LFTUsuario" />
+            <End Role="LFTLiga" EntitySet="LFTLiga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTRondaLiga_LFTLiga" Association="dbLigaFantasiaModel.FK_LFTRondaLiga_LFTLiga">
+            <End Role="LFTLiga" EntitySet="LFTLiga" />
+            <End Role="LFTRondaLiga" EntitySet="LFTRondaLiga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTResultadoRonda_LFTMetricaCategoria" Association="dbLigaFantasiaModel.FK_LFTResultadoRonda_LFTMetricaCategoria">
+            <End Role="LFTMetricaCategoria" EntitySet="LFTMetricaCategoria" />
+            <End Role="LFTResultadoRonda" EntitySet="LFTResultadoRonda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTRolPermiso_LFTPermiso" Association="dbLigaFantasiaModel.FK_LFTRolPermiso_LFTPermiso">
+            <End Role="LFTPermiso" EntitySet="LFTPermiso" />
+            <End Role="LFTRolPermiso" EntitySet="LFTRolPermiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTResultadoRonda_LFTRondaLiga" Association="dbLigaFantasiaModel.FK_LFTResultadoRonda_LFTRondaLiga">
+            <End Role="LFTRondaLiga" EntitySet="LFTRondaLiga" />
+            <End Role="LFTResultadoRonda" EntitySet="LFTResultadoRonda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTRolUsuario_LFTUsuario" Association="dbLigaFantasiaModel.FK_LFTRolUsuario_LFTUsuario">
+            <End Role="LFTUsuario" EntitySet="LFTUsuario" />
+            <End Role="LFTRolUsuario" EntitySet="LFTRolUsuario" />
+          </AssociationSet>
+          <FunctionImport Name="LFPListarResultadoJugadorRonda" ReturnType="Collection(dbLigaFantasiaModel.LFPListarResultadoJugadorRonda_Result)">
+            <Parameter Name="PidRonda" Mode="In" Type="Int32" />
+            <Parameter Name="PidJugadorLiga" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <AssociationSet Name="FK_LFTMiembroEquipoLiga_LFTEquipoRonda" Association="dbLigaFantasiaModel.FK_LFTMiembroEquipoLiga_LFTEquipoRonda">
+            <End Role="LFTEquipoRonda" EntitySet="LFTEquipoRonda" />
+            <End Role="LFTMiembroEquipoLiga" EntitySet="LFTMiembroEquipoLiga" />
+          </AssociationSet>
+          <FunctionImport Name="LFPLigasDisponiblesEntrenadorListar" ReturnType="Collection(dbLigaFantasiaModel.LFPLigasDisponiblesEntrenadorListar_Result)">
+            <Parameter Name="PIdInstitucion" Mode="In" Type="Int32" />
+            <Parameter Name="PCodigoUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="PNombreLiga" Mode="In" Type="String" />
+            <Parameter Name="PActiva" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="LFPTopDetalleResultadoJugadoresListar" ReturnType="Collection(dbLigaFantasiaModel.LFPTopDetalleResultadoJugadoresListar_Result)">
+            <Parameter Name="PIdJugadorLiga" Mode="In" Type="Int32" />
+            <Parameter Name="PIdRonda" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="LFPTopJugadoresListar" ReturnType="Collection(dbLigaFantasiaModel.LFPTopJugadoresListar_Result)">
+            <Parameter Name="PIdLiga" Mode="In" Type="Int32" />
+            <Parameter Name="PIdRonda" Mode="In" Type="Int32" />
+            <Parameter Name="PIdCategoria" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="LFPValidacionCierreRondaListar" ReturnType="Collection(dbLigaFantasiaModel.LFPValidacionCierreRondaListar_Result)">
+            <Parameter Name="PIdRondaLiga" Mode="In" Type="Int32" />
+            <Parameter Name="PIdLiga" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="LFTHistoriaPrecioRondaJugador" EntityType="dbLigaFantasiaModel.LFTHistoriaPrecioRondaJugador" />
+          <AssociationSet Name="FK_LFTHistoriaPrecioRondaJugador_LFTJugadorLiga" Association="dbLigaFantasiaModel.FK_LFTHistoriaPrecioRondaJugador_LFTJugadorLiga">
+            <End Role="LFTJugadorLiga" EntitySet="LFTJugadorLiga" />
+            <End Role="LFTHistoriaPrecioRondaJugador" EntitySet="LFTHistoriaPrecioRondaJugador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTHistoriaPrecioRondaJugador_LFTRondaLiga" Association="dbLigaFantasiaModel.FK_LFTHistoriaPrecioRondaJugador_LFTRondaLiga">
+            <End Role="LFTRondaLiga" EntitySet="LFTRondaLiga" />
+            <End Role="LFTHistoriaPrecioRondaJugador" EntitySet="LFTHistoriaPrecioRondaJugador" />
+          </AssociationSet>
+          <FunctionImport Name="LFPCerrarRonda">
+            <Parameter Name="PIdRonda" Mode="In" Type="Int32" />
+            <Parameter Name="PCodigoUsuarioOpera" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="ActiveDirectory" EntityType="dbLigaFantasiaModel.ActiveDirectory" />
+          <EntitySet Name="LFTPlantillaCorreo" EntityType="dbLigaFantasiaModel.LFTPlantillaCorreo" />
+          <EntitySet Name="LFTRol" EntityType="dbLigaFantasiaModel.LFTRol" />
+          <AssociationSet Name="FK_LFTRolPermiso_LFTTRol1" Association="dbLigaFantasiaModel.FK_LFTRolPermiso_LFTTRol1">
+            <End Role="LFTRol" EntitySet="LFTRol" />
+            <End Role="LFTRolPermiso" EntitySet="LFTRolPermiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LFTRolUsuario_LFTTRol1" Association="dbLigaFantasiaModel.FK_LFTRolUsuario_LFTTRol1">
+            <End Role="LFTRol" EntitySet="LFTRol" />
+            <End Role="LFTRolUsuario" EntitySet="LFTRolUsuario" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="LFTAudit">
+          <Key>
+            <PropertyRef Name="CodigoAudit" />
+          </Key>
+          <Property Name="CodigoAudit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoUsuario" Type="Int32" Nullable="false" />
+          <Property Name="CodigoIdentidad" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NombreTabla" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="NombreCampo" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Accion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ValorAnterior" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ValorNuevo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="Latitud" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="Longitud" Type="Decimal" Precision="9" Scale="6" />
+        </EntityType>
+        <EntityType Name="LFTCategoriaJugador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdLiga" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MinimoJugadores" Type="Int32" />
+          <Property Name="MaximoJugadores" Type="Int32" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="Eliminado" Type="Boolean" />
+          <Property Name="CodigoUsuarioInserto" Type="Int32" />
+          <Property Name="UsuarioInserto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInserto" Type="DateTime" Precision="0" />
+          <Property Name="CodigoUsuarioModifico" Type="Int32" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="LFTLiga" Relationship="dbLigaFantasiaModel.FK_LFTCategoriaJugadores_LFTLiga" FromRole="LFTCategoriaJugador" ToRole="LFTLiga" />
+          <NavigationProperty Name="LFTJugadorLiga" Relationship="dbLigaFantasiaModel.FK_LFTJugadoresLiga_LFTCategoriaJugadores" FromRole="LFTCategoriaJugador" ToRole="LFTJugadorLiga" />
+          <NavigationProperty Name="LFTMetricaCategoria" Relationship="dbLigaFantasiaModel.FK_LFTMetricaCategoría_LFTCategoriaJugadores" FromRole="LFTCategoriaJugador" ToRole="LFTMetricaCategoria" />
+        </EntityType>
+        <EntityType Name="LFTEquipoRonda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRonda" Type="Int32" />
+          <Property Name="CodigoUsuarioEntrenador" Type="Int32" />
+          <Property Name="Presupuesto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="CodigoUsuarioInserto" Type="Int32" Nullable="false" />
+          <Property Name="UsuarioInserto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInserto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CodigoUsuarioModifico" Type="Int32" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LFTRondaLiga" Relationship="dbLigaFantasiaModel.FK_LFTEquipoRonda_LFTRondaLiga" FromRole="LFTEquipoRonda" ToRole="LFTRondaLiga" />
+          <NavigationProperty Name="LFTMiembroEquipoLiga" Relationship="dbLigaFantasiaModel.FK_LFTMiembroEquipoLiga_LFTEquipoRonda" FromRole="LFTEquipoRonda" ToRole="LFTMiembroEquipoLiga" />
+        </EntityType>
+        <EntityType Name="LFTEstadoRonda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="Eliminado" Type="Boolean" />
+          <Property Name="UsuarioInserto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInserto" Type="DateTime" Precision="3" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LFTRondaLiga" Relationship="dbLigaFantasiaModel.FK_LFTRondaLiga_LFTEstadoRonda" FromRole="LFTEstadoRonda" ToRole="LFTRondaLiga" />
+        </EntityType>
+        <EntityType Name="LFTInstitucion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="InformacionAdicional" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LogoUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="CodigoUsuarioInserto" Type="Int32" />
+          <Property Name="UsuarioInserto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInserto" Type="DateTime" Precision="3" />
+          <Property Name="CodigoUsuarioModifico" Type="Int32" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LFTJugador" Relationship="dbLigaFantasiaModel.FK_LFTJugadores_LFTInstitucion" FromRole="LFTInstitucion" ToRole="LFTJugador" />
+          <NavigationProperty Name="LFTLiga" Relationship="dbLigaFantasiaModel.FK_LFTLiga_LFTInstitucion" FromRole="LFTInstitucion" ToRole="LFTLiga" />
+          <NavigationProperty Name="LFTUsuario" Relationship="dbLigaFantasiaModel.FK_LFTUsuario_LFTInstitucion" FromRole="LFTInstitucion" ToRole="LFTUsuario" />
+        </EntityType>
+        <EntityType Name="LFTJugador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdInstitucion" Type="Int32" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SobreMi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoUsuario" Type="Int32" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="Eliminado" Type="Boolean" />
+          <Property Name="CodigoUsuarioInserto" Type="Int32" />
+          <Property Name="UsuarioInserto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInserto" Type="DateTime" Precision="3" />
+          <Property Name="CodigoUsuarioModifico" Type="Int32" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LFTInstitucion" Relationship="dbLigaFantasiaModel.FK_LFTJugadores_LFTInstitucion" FromRole="LFTJugador" ToRole="LFTInstitucion" />
+          <NavigationProperty Name="LFTUsuario" Relationship="dbLigaFantasiaModel.FK_LFTJugadoresGlobal_LFTUsuario" FromRole="LFTJugador" ToRole="LFTUsuario" />
+          <NavigationProperty Name="LFTJugadorLiga" Relationship="dbLigaFantasiaModel.FK_LFTJugadoresLiga_LFTJugadoresGlobal" FromRole="LFTJugador" ToRole="LFTJugadorLiga" />
+        </EntityType>
+        <EntityType Name="LFTJugadorLiga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdJugador" Type="Int32" Nullable="false" />
+          <Property Name="IdLiga" Type="Int32" Nullable="false" />
+          <Property Name="IdCategoriaJugador" Type="Int32" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="Eliminado" Type="Boolean" />
+          <Property Name="CodigoUsuarioInserto" Type="Int32" />
+          <Property Name="UsuarioInserto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInserto" Type="DateTime" Precision="3" />
+          <Property Name="CodigoUsuarioModifico" Type="Int32" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LFTCategoriaJugador" Relationship="dbLigaFantasiaModel.FK_LFTJugadoresLiga_LFTCategoriaJugadores" FromRole="LFTJugadorLiga" ToRole="LFTCategoriaJugador" />
+          <NavigationProperty Name="LFTJugador" Relationship="dbLigaFantasiaModel.FK_LFTJugadoresLiga_LFTJugadoresGlobal" FromRole="LFTJugadorLiga" ToRole="LFTJugador" />
+          <NavigationProperty Name="LFTLiga" Relationship="dbLigaFantasiaModel.FK_LFTJugadoresLiga_LFTLiga" FromRole="LFTJugadorLiga" ToRole="LFTLiga" />
+          <NavigationProperty Name="LFTMiembroEquipoLiga" Relationship="dbLigaFantasiaModel.FK_LFTMiembrosEquipoLiga_LFTJugadoresLiga" FromRole="LFTJugadorLiga" ToRole="LFTMiembroEquipoLiga" />
+          <NavigationProperty Name="LFTResultadoRonda" Relationship="dbLigaFantasiaModel.FK_LFTResultadoRonda_LFTJugadorLiga" FromRole="LFTJugadorLiga" ToRole="LFTResultadoRonda" />
+          <Property Name="PrecioInicial" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="LFTHistoriaPrecioRondaJugador" Relationship="dbLigaFantasiaModel.FK_LFTHistoriaPrecioRondaJugador_LFTJugadorLiga" FromRole="LFTJugadorLiga" ToRole="LFTHistoriaPrecioRondaJugador" />
+        </EntityType>
+        <EntityType Name="LFTLiga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoUsuarioAdministrador" Type="Int32" Nullable="false" />
+          <Property Name="IdInstitucion" Type="Int32" Nullable="false" />
+          <Property Name="Publico" Type="Boolean" Nullable="false" />
+          <Property Name="FechaInicio" Type="DateTime" Precision="0" />
+          <Property Name="CantidadRecurrencia" Type="Int32" />
+          <Property Name="UnidadRecurrencia" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CantidadRondas" Type="Int32" />
+          <Property Name="Editable" Type="Boolean" />
+          <Property Name="EditarPlantilla" Type="Boolean" />
+          <Property Name="PresupuestoInicial" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="CodigoUsuarioInserto" Type="Int32" />
+          <Property Name="UsuarioInserto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInserto" Type="DateTime" Precision="0" />
+          <Property Name="CodigoUsuarioModifico" Type="Int32" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="LFTCategoriaJugador" Relationship="dbLigaFantasiaModel.FK_LFTCategoriaJugadores_LFTLiga" FromRole="LFTLiga" ToRole="LFTCategoriaJugador" />
+          <NavigationProperty Name="LFTInstitucion" Relationship="dbLigaFantasiaModel.FK_LFTLiga_LFTInstitucion" FromRole="LFTLiga" ToRole="LFTInstitucion" />
+          <NavigationProperty Name="LFTJugadorLiga" Relationship="dbLigaFantasiaModel.FK_LFTJugadoresLiga_LFTLiga" FromRole="LFTLiga" ToRole="LFTJugadorLiga" />
+          <NavigationProperty Name="LFTUsuario" Relationship="dbLigaFantasiaModel.FK_LFTLiga_LFTUsuario" FromRole="LFTLiga" ToRole="LFTUsuario" />
+          <NavigationProperty Name="LFTRondaLiga" Relationship="dbLigaFantasiaModel.FK_LFTRondaLiga_LFTLiga" FromRole="LFTLiga" ToRole="LFTRondaLiga" />
+        </EntityType>
+        <EntityType Name="LFTMetricaCategoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCategoria" Type="Int32" />
+          <Property Name="Nombre" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Puntos" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Positivo" Type="Boolean" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="Eliminado" Type="Boolean" />
+          <Property Name="CodigoUsuarioInserto" Type="Int32" />
+          <Property Name="UsuarioInserto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInserto" Type="DateTime" Precision="3" />
+          <Property Name="CodigoUsuarioModifico" Type="Int32" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LFTCategoriaJugador" Relationship="dbLigaFantasiaModel.FK_LFTMetricaCategoría_LFTCategoriaJugadores" FromRole="LFTMetricaCategoria" ToRole="LFTCategoriaJugador" />
+          <NavigationProperty Name="LFTResultadoRonda" Relationship="dbLigaFantasiaModel.FK_LFTResultadoRonda_LFTMetricaCategoria" FromRole="LFTMetricaCategoria" ToRole="LFTResultadoRonda" />
+          <Property Name="Valuacion" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EsPorcentaje" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="LFTMiembroEquipoLiga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdJugadorLiga" Type="Int32" />
+          <Property Name="IdEquipo" Type="Int32" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="Eliminado" Type="Boolean" />
+          <Property Name="CodigoUsuarioInserto" Type="Int32" />
+          <Property Name="UsuarioInserto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInserto" Type="DateTime" Precision="3" />
+          <Property Name="CodigoUsuarioModifico" Type="Int32" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LFTJugadorLiga" Relationship="dbLigaFantasiaModel.FK_LFTMiembrosEquipoLiga_LFTJugadoresLiga" FromRole="LFTMiembroEquipoLiga" ToRole="LFTJugadorLiga" />
+          <NavigationProperty Name="LFTEquipoRonda" Relationship="dbLigaFantasiaModel.FK_LFTMiembroEquipoLiga_LFTEquipoRonda" FromRole="LFTMiembroEquipoLiga" ToRole="LFTEquipoRonda" />
+        </EntityType>
+        <EntityType Name="LFTPermiso">
+          <Key>
+            <PropertyRef Name="CodigoPermiso" />
+          </Key>
+          <Property Name="CodigoPermiso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Permiso" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="UsuarioInserto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaInserto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
+          <Property Name="CodigoPermisoAgrupacion" Type="Int32" Nullable="false" />
+          <Property Name="Icono" Type="String" MaxLength="52" FixedLength="false" Unicode="false" />
+          <Property Name="Llave" Type="String" MaxLength="52" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LFTRolPermiso" Relationship="dbLigaFantasiaModel.FK_LFTRolPermiso_LFTPermiso" FromRole="LFTPermiso" ToRole="LFTRolPermiso" />
+        </EntityType>
+        <EntityType Name="LFTResultadoRonda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRonda" Type="Int32" Nullable="false" />
+          <Property Name="IdJugadorLiga" Type="Int32" Nullable="false" />
+          <Property Name="IdMetrica" Type="Int32" Nullable="false" />
+          <Property Name="Resultado" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="CodigoUsuarioInserto" Type="Int32" Nullable="false" />
+          <Property Name="UsuarioInserto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInserto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CodigoUsuarioModifico" Type="Int32" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LFTJugadorLiga" Relationship="dbLigaFantasiaModel.FK_LFTResultadoRonda_LFTJugadorLiga" FromRole="LFTResultadoRonda" ToRole="LFTJugadorLiga" />
+          <NavigationProperty Name="LFTMetricaCategoria" Relationship="dbLigaFantasiaModel.FK_LFTResultadoRonda_LFTMetricaCategoria" FromRole="LFTResultadoRonda" ToRole="LFTMetricaCategoria" />
+          <NavigationProperty Name="LFTRondaLiga" Relationship="dbLigaFantasiaModel.FK_LFTResultadoRonda_LFTRondaLiga" FromRole="LFTResultadoRonda" ToRole="LFTRondaLiga" />
+          <Property Name="Puntos" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ValorObtenido" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="LFTRolPermiso">
+          <Key>
+            <PropertyRef Name="CodigoRolPermiso" />
+          </Key>
+          <Property Name="CodigoRolPermiso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoRol" Type="Int32" Nullable="false" />
+          <Property Name="CodigoPermiso" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="UsuarioInserto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaInserto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LFTPermiso" Relationship="dbLigaFantasiaModel.FK_LFTRolPermiso_LFTPermiso" FromRole="LFTRolPermiso" ToRole="LFTPermiso" />
+          <NavigationProperty Name="LFTRol" Relationship="dbLigaFantasiaModel.FK_LFTRolPermiso_LFTTRol1" FromRole="LFTRolPermiso" ToRole="LFTRol" />
+        </EntityType>
+        <EntityType Name="LFTRolUsuario">
+          <Key>
+            <PropertyRef Name="CodigoRolUsuario" />
+          </Key>
+          <Property Name="CodigoRolUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoUsuario" Type="Int32" Nullable="false" />
+          <Property Name="CodigoRol" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="UsuarioInserto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaInserto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LFTUsuario" Relationship="dbLigaFantasiaModel.FK_LFTRolUsuario_LFTUsuario" FromRole="LFTRolUsuario" ToRole="LFTUsuario" />
+          <NavigationProperty Name="LFTRol" Relationship="dbLigaFantasiaModel.FK_LFTRolUsuario_LFTTRol1" FromRole="LFTRolUsuario" ToRole="LFTRol" />
+        </EntityType>
+        <EntityType Name="LFTRondaLiga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdLiga" Type="Int32" Nullable="false" />
+          <Property Name="FechaInicio" Type="DateTime" Precision="0" />
+          <Property Name="FechaFin" Type="DateTime" Precision="0" />
+          <Property Name="NumeroRonda" Type="Int32" />
+          <Property Name="Estado" Type="Int32" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" />
+          <Property Name="CodigoUsuarioInserto" Type="Int32" />
+          <Property Name="UsuarioInserto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInserto" Type="DateTime" Precision="3" />
+          <Property Name="CodigoUsuarioModifico" Type="Int32" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LFTEquipoRonda" Relationship="dbLigaFantasiaModel.FK_LFTEquipoRonda_LFTRondaLiga" FromRole="LFTRondaLiga" ToRole="LFTEquipoRonda" />
+          <NavigationProperty Name="LFTEstadoRonda" Relationship="dbLigaFantasiaModel.FK_LFTRondaLiga_LFTEstadoRonda" FromRole="LFTRondaLiga" ToRole="LFTEstadoRonda" />
+          <NavigationProperty Name="LFTLiga" Relationship="dbLigaFantasiaModel.FK_LFTRondaLiga_LFTLiga" FromRole="LFTRondaLiga" ToRole="LFTLiga" />
+          <NavigationProperty Name="LFTResultadoRonda" Relationship="dbLigaFantasiaModel.FK_LFTResultadoRonda_LFTRondaLiga" FromRole="LFTRondaLiga" ToRole="LFTResultadoRonda" />
+          <NavigationProperty Name="LFTHistoriaPrecioRondaJugador" Relationship="dbLigaFantasiaModel.FK_LFTHistoriaPrecioRondaJugador_LFTRondaLiga" FromRole="LFTRondaLiga" ToRole="LFTHistoriaPrecioRondaJugador" />
+        </EntityType>
+        <EntityType Name="LFTUsuario">
+          <Key>
+            <PropertyRef Name="CodigoUsuario" />
+          </Key>
+          <Property Name="CodigoUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCompletoUsuario" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AutenticacionWindows" Type="Boolean" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="CorreoElectronico" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoUsuarioInserto" Type="Int32" />
+          <Property Name="UsuarioInserto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaInserto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CodigoUsuarioModifico" Type="Int32" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
+          <Property Name="NecesitaCambioDeClave" Type="Boolean" />
+          <Property Name="UsuarioAD" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="IdInstitucion" Type="Int32" />
+          <NavigationProperty Name="LFTInstitucion" Relationship="dbLigaFantasiaModel.FK_LFTUsuario_LFTInstitucion" FromRole="LFTUsuario" ToRole="LFTInstitucion" />
+          <NavigationProperty Name="LFTJugador" Relationship="dbLigaFantasiaModel.FK_LFTJugadoresGlobal_LFTUsuario" FromRole="LFTUsuario" ToRole="LFTJugador" />
+          <NavigationProperty Name="LFTLiga" Relationship="dbLigaFantasiaModel.FK_LFTLiga_LFTUsuario" FromRole="LFTUsuario" ToRole="LFTLiga" />
+          <NavigationProperty Name="LFTRolUsuario" Relationship="dbLigaFantasiaModel.FK_LFTRolUsuario_LFTUsuario" FromRole="LFTUsuario" ToRole="LFTRolUsuario" />
+        </EntityType>
+        <Association Name="FK_LFTCategoriaJugadores_LFTLiga">
+          <End Type="dbLigaFantasiaModel.LFTLiga" Role="LFTLiga" Multiplicity="1" />
+          <End Type="dbLigaFantasiaModel.LFTCategoriaJugador" Role="LFTCategoriaJugador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTCategoriaJugador">
+              <PropertyRef Name="IdLiga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTJugadoresLiga_LFTCategoriaJugadores">
+          <End Type="dbLigaFantasiaModel.LFTCategoriaJugador" Role="LFTCategoriaJugador" Multiplicity="0..1" />
+          <End Type="dbLigaFantasiaModel.LFTJugadorLiga" Role="LFTJugadorLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTCategoriaJugador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTJugadorLiga">
+              <PropertyRef Name="IdCategoriaJugador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTMetricaCategoría_LFTCategoriaJugadores">
+          <End Type="dbLigaFantasiaModel.LFTCategoriaJugador" Role="LFTCategoriaJugador" Multiplicity="0..1" />
+          <End Type="dbLigaFantasiaModel.LFTMetricaCategoria" Role="LFTMetricaCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTCategoriaJugador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTMetricaCategoria">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTEquipoRonda_LFTRondaLiga">
+          <End Type="dbLigaFantasiaModel.LFTRondaLiga" Role="LFTRondaLiga" Multiplicity="0..1" />
+          <End Type="dbLigaFantasiaModel.LFTEquipoRonda" Role="LFTEquipoRonda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTRondaLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTEquipoRonda">
+              <PropertyRef Name="IdRonda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTRondaLiga_LFTEstadoRonda">
+          <End Type="dbLigaFantasiaModel.LFTEstadoRonda" Role="LFTEstadoRonda" Multiplicity="0..1" />
+          <End Type="dbLigaFantasiaModel.LFTRondaLiga" Role="LFTRondaLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTEstadoRonda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTRondaLiga">
+              <PropertyRef Name="Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTJugadores_LFTInstitucion">
+          <End Type="dbLigaFantasiaModel.LFTInstitucion" Role="LFTInstitucion" Multiplicity="0..1" />
+          <End Type="dbLigaFantasiaModel.LFTJugador" Role="LFTJugador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTInstitucion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTJugador">
+              <PropertyRef Name="IdInstitucion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTLiga_LFTInstitucion">
+          <End Type="dbLigaFantasiaModel.LFTInstitucion" Role="LFTInstitucion" Multiplicity="1" />
+          <End Type="dbLigaFantasiaModel.LFTLiga" Role="LFTLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTInstitucion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTLiga">
+              <PropertyRef Name="IdInstitucion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTUsuario_LFTInstitucion">
+          <End Type="dbLigaFantasiaModel.LFTInstitucion" Role="LFTInstitucion" Multiplicity="0..1" />
+          <End Type="dbLigaFantasiaModel.LFTUsuario" Role="LFTUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTInstitucion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTUsuario">
+              <PropertyRef Name="IdInstitucion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTJugadoresGlobal_LFTUsuario">
+          <End Type="dbLigaFantasiaModel.LFTUsuario" Role="LFTUsuario" Multiplicity="0..1" />
+          <End Type="dbLigaFantasiaModel.LFTJugador" Role="LFTJugador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTUsuario">
+              <PropertyRef Name="CodigoUsuario" />
+            </Principal>
+            <Dependent Role="LFTJugador">
+              <PropertyRef Name="CodigoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTJugadoresLiga_LFTJugadoresGlobal">
+          <End Type="dbLigaFantasiaModel.LFTJugador" Role="LFTJugador" Multiplicity="1" />
+          <End Type="dbLigaFantasiaModel.LFTJugadorLiga" Role="LFTJugadorLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTJugador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTJugadorLiga">
+              <PropertyRef Name="IdJugador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTJugadoresLiga_LFTLiga">
+          <End Type="dbLigaFantasiaModel.LFTLiga" Role="LFTLiga" Multiplicity="1" />
+          <End Type="dbLigaFantasiaModel.LFTJugadorLiga" Role="LFTJugadorLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTJugadorLiga">
+              <PropertyRef Name="IdLiga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTMiembrosEquipoLiga_LFTJugadoresLiga">
+          <End Type="dbLigaFantasiaModel.LFTJugadorLiga" Role="LFTJugadorLiga" Multiplicity="0..1" />
+          <End Type="dbLigaFantasiaModel.LFTMiembroEquipoLiga" Role="LFTMiembroEquipoLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTJugadorLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTMiembroEquipoLiga">
+              <PropertyRef Name="IdJugadorLiga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTResultadoRonda_LFTJugadorLiga">
+          <End Type="dbLigaFantasiaModel.LFTJugadorLiga" Role="LFTJugadorLiga" Multiplicity="1" />
+          <End Type="dbLigaFantasiaModel.LFTResultadoRonda" Role="LFTResultadoRonda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTJugadorLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTResultadoRonda">
+              <PropertyRef Name="IdJugadorLiga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTLiga_LFTUsuario">
+          <End Type="dbLigaFantasiaModel.LFTUsuario" Role="LFTUsuario" Multiplicity="1" />
+          <End Type="dbLigaFantasiaModel.LFTLiga" Role="LFTLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTUsuario">
+              <PropertyRef Name="CodigoUsuario" />
+            </Principal>
+            <Dependent Role="LFTLiga">
+              <PropertyRef Name="CodigoUsuarioAdministrador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTRondaLiga_LFTLiga">
+          <End Type="dbLigaFantasiaModel.LFTLiga" Role="LFTLiga" Multiplicity="1" />
+          <End Type="dbLigaFantasiaModel.LFTRondaLiga" Role="LFTRondaLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTRondaLiga">
+              <PropertyRef Name="IdLiga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTResultadoRonda_LFTMetricaCategoria">
+          <End Type="dbLigaFantasiaModel.LFTMetricaCategoria" Role="LFTMetricaCategoria" Multiplicity="1" />
+          <End Type="dbLigaFantasiaModel.LFTResultadoRonda" Role="LFTResultadoRonda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTMetricaCategoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTResultadoRonda">
+              <PropertyRef Name="IdMetrica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTRolPermiso_LFTPermiso">
+          <End Type="dbLigaFantasiaModel.LFTPermiso" Role="LFTPermiso" Multiplicity="1" />
+          <End Type="dbLigaFantasiaModel.LFTRolPermiso" Role="LFTRolPermiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTPermiso">
+              <PropertyRef Name="CodigoPermiso" />
+            </Principal>
+            <Dependent Role="LFTRolPermiso">
+              <PropertyRef Name="CodigoPermiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTResultadoRonda_LFTRondaLiga">
+          <End Type="dbLigaFantasiaModel.LFTRondaLiga" Role="LFTRondaLiga" Multiplicity="1" />
+          <End Type="dbLigaFantasiaModel.LFTResultadoRonda" Role="LFTResultadoRonda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTRondaLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTResultadoRonda">
+              <PropertyRef Name="IdRonda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTRolUsuario_LFTUsuario">
+          <End Type="dbLigaFantasiaModel.LFTUsuario" Role="LFTUsuario" Multiplicity="1" />
+          <End Type="dbLigaFantasiaModel.LFTRolUsuario" Role="LFTRolUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTUsuario">
+              <PropertyRef Name="CodigoUsuario" />
+            </Principal>
+            <Dependent Role="LFTRolUsuario">
+              <PropertyRef Name="CodigoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="LFPListarResultadoJugadorRonda_Result">
+          <Property Type="Int32" Name="IdMetrica" Nullable="false" />
+          <Property Type="String" Name="NombreMetrica" Nullable="true" MaxLength="300" />
+          <Property Type="Decimal" Name="Resultado" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreCategoria" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="Decimal" Name="Puntos" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="Positivo" Nullable="true" />
+        </ComplexType>
+        <Association Name="FK_LFTMiembroEquipoLiga_LFTEquipoRonda">
+          <End Type="dbLigaFantasiaModel.LFTEquipoRonda" Role="LFTEquipoRonda" Multiplicity="0..1" />
+          <End Type="dbLigaFantasiaModel.LFTMiembroEquipoLiga" Role="LFTMiembroEquipoLiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTEquipoRonda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTMiembroEquipoLiga">
+              <PropertyRef Name="IdEquipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="LFPLigasDisponiblesEntrenadorListar_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="NombreCompletoUsuario" Nullable="false" MaxLength="255" />
+          <Property Type="Boolean" Name="Publico" Nullable="false" />
+          <Property Type="Int32" Name="CantidadRondas" Nullable="true" />
+          <Property Type="Boolean" Name="Editable" Nullable="true" />
+          <Property Type="Boolean" Name="EditarPlantilla" Nullable="true" />
+          <Property Type="Decimal" Name="PresupuestoInicial" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="Activo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="LFPTopDetalleResultadoJugadoresListar_Result">
+          <Property Type="Int32" Name="NumeroRonda" Nullable="true" />
+          <Property Type="Int32" Name="IdJugadorLiga" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Categoria" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="NombreMetrica" Nullable="true" MaxLength="300" />
+          <Property Type="Decimal" Name="ResultadoMetrica" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="TotalPuntos" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="LFPTopJugadoresListar_Result">
+          <Property Type="Int64" Name="orden" Nullable="true" />
+          <Property Type="Int32" Name="IdJugadorLiga" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Categoria" Nullable="true" MaxLength="255" />
+          <Property Type="Decimal" Name="TotalPuntos" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="LFPValidacionCierreRondaListar_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Categoria" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <EntityType Name="LFTHistoriaPrecioRondaJugador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdJugadorLiga" Type="Int32" Nullable="false" />
+          <Property Name="IdRonda" Type="Int32" Nullable="false" />
+          <Property Name="PrecioInicial" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PrecioFinal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CodigoUsuarioInserto" Type="Int32" />
+          <Property Name="UsuarioInserto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInserto" Type="DateTime" Precision="3" />
+          <Property Name="CodigoUsuarioModifico" Type="Int32" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LFTJugadorLiga" Relationship="dbLigaFantasiaModel.FK_LFTHistoriaPrecioRondaJugador_LFTJugadorLiga" FromRole="LFTHistoriaPrecioRondaJugador" ToRole="LFTJugadorLiga" />
+          <NavigationProperty Name="LFTRondaLiga" Relationship="dbLigaFantasiaModel.FK_LFTHistoriaPrecioRondaJugador_LFTRondaLiga" FromRole="LFTHistoriaPrecioRondaJugador" ToRole="LFTRondaLiga" />
+        </EntityType>
+        <Association Name="FK_LFTHistoriaPrecioRondaJugador_LFTJugadorLiga">
+          <End Type="dbLigaFantasiaModel.LFTJugadorLiga" Role="LFTJugadorLiga" Multiplicity="1" />
+          <End Type="dbLigaFantasiaModel.LFTHistoriaPrecioRondaJugador" Role="LFTHistoriaPrecioRondaJugador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTJugadorLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTHistoriaPrecioRondaJugador">
+              <PropertyRef Name="IdJugadorLiga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTHistoriaPrecioRondaJugador_LFTRondaLiga">
+          <End Type="dbLigaFantasiaModel.LFTRondaLiga" Role="LFTRondaLiga" Multiplicity="1" />
+          <End Type="dbLigaFantasiaModel.LFTHistoriaPrecioRondaJugador" Role="LFTHistoriaPrecioRondaJugador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTRondaLiga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LFTHistoriaPrecioRondaJugador">
+              <PropertyRef Name="IdRonda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ActiveDirectory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Puesto" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoScilu" Type="Int32" />
+          <Property Name="DPI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LFTPlantillaCorreo">
+          <Key>
+            <PropertyRef Name="CodigoPlantillaCorreo" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Activo" />
+            <PropertyRef Name="Eliminado" />
+            <PropertyRef Name="UsuarioInserto" />
+            <PropertyRef Name="FechaInserto" />
+          </Key>
+          <Property Name="CodigoPlantillaCorreo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Plantilla" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Asunto" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Remitente" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="CCO" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="UsuarioInserto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaInserto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="LFTRol">
+          <Key>
+            <PropertyRef Name="CodigoRol" />
+          </Key>
+          <Property Name="CodigoRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rol" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="UsuarioInserto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaInserto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LFTRolPermiso" Relationship="dbLigaFantasiaModel.FK_LFTRolPermiso_LFTTRol1" FromRole="LFTRol" ToRole="LFTRolPermiso" />
+          <NavigationProperty Name="LFTRolUsuario" Relationship="dbLigaFantasiaModel.FK_LFTRolUsuario_LFTTRol1" FromRole="LFTRol" ToRole="LFTRolUsuario" />
+        </EntityType>
+        <Association Name="FK_LFTRolPermiso_LFTTRol1">
+          <End Type="dbLigaFantasiaModel.LFTRol" Role="LFTRol" Multiplicity="1" />
+          <End Type="dbLigaFantasiaModel.LFTRolPermiso" Role="LFTRolPermiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTRol">
+              <PropertyRef Name="CodigoRol" />
+            </Principal>
+            <Dependent Role="LFTRolPermiso">
+              <PropertyRef Name="CodigoRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LFTRolUsuario_LFTTRol1">
+          <End Type="dbLigaFantasiaModel.LFTRol" Role="LFTRol" Multiplicity="1" />
+          <End Type="dbLigaFantasiaModel.LFTRolUsuario" Role="LFTRolUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LFTRol">
+              <PropertyRef Name="CodigoRol" />
+            </Principal>
+            <Dependent Role="LFTRolUsuario">
+              <PropertyRef Name="CodigoRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbLigaFantasiaModelStoreContainer" CdmEntityContainer="dbLigaFantasiaEntities">
+          <EntitySetMapping Name="LFTAudit">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTAudit">
+              <MappingFragment StoreEntitySet="LFTAudit">
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="ValorNuevo" ColumnName="ValorNuevo" />
+                <ScalarProperty Name="ValorAnterior" ColumnName="ValorAnterior" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="NombreCampo" ColumnName="NombreCampo" />
+                <ScalarProperty Name="NombreTabla" ColumnName="NombreTabla" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="CodigoIdentidad" ColumnName="CodigoIdentidad" />
+                <ScalarProperty Name="CodigoUsuario" ColumnName="CodigoUsuario" />
+                <ScalarProperty Name="CodigoAudit" ColumnName="CodigoAudit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFTCategoriaJugador">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTCategoriaJugador">
+              <MappingFragment StoreEntitySet="LFTCategoriaJugador">
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="CodigoUsuarioModifico" ColumnName="CodigoUsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="CodigoUsuarioInserto" ColumnName="CodigoUsuarioInserto" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="MaximoJugadores" ColumnName="MaximoJugadores" />
+                <ScalarProperty Name="MinimoJugadores" ColumnName="MinimoJugadores" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdLiga" ColumnName="IdLiga" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFTEquipoRonda">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTEquipoRonda">
+              <MappingFragment StoreEntitySet="LFTEquipoRonda">
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="CodigoUsuarioModifico" ColumnName="CodigoUsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="CodigoUsuarioInserto" ColumnName="CodigoUsuarioInserto" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Presupuesto" ColumnName="Presupuesto" />
+                <ScalarProperty Name="CodigoUsuarioEntrenador" ColumnName="CodigoUsuarioEntrenador" />
+                <ScalarProperty Name="IdRonda" ColumnName="IdRonda" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFTEstadoRonda">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTEstadoRonda">
+              <MappingFragment StoreEntitySet="LFTEstadoRonda">
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFTInstitucion">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTInstitucion">
+              <MappingFragment StoreEntitySet="LFTInstitucion">
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="CodigoUsuarioModifico" ColumnName="CodigoUsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="CodigoUsuarioInserto" ColumnName="CodigoUsuarioInserto" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="LogoUrl" ColumnName="LogoUrl" />
+                <ScalarProperty Name="InformacionAdicional" ColumnName="InformacionAdicional" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFTJugador">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTJugador">
+              <MappingFragment StoreEntitySet="LFTJugador">
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="CodigoUsuarioModifico" ColumnName="CodigoUsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="CodigoUsuarioInserto" ColumnName="CodigoUsuarioInserto" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="CodigoUsuario" ColumnName="CodigoUsuario" />
+                <ScalarProperty Name="SobreMi" ColumnName="SobreMi" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdInstitucion" ColumnName="IdInstitucion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFTJugadorLiga">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTJugadorLiga">
+              <MappingFragment StoreEntitySet="LFTJugadorLiga">
+                <ScalarProperty Name="PrecioInicial" ColumnName="PrecioInicial" />
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="CodigoUsuarioModifico" ColumnName="CodigoUsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="CodigoUsuarioInserto" ColumnName="CodigoUsuarioInserto" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="IdCategoriaJugador" ColumnName="IdCategoriaJugador" />
+                <ScalarProperty Name="IdLiga" ColumnName="IdLiga" />
+                <ScalarProperty Name="IdJugador" ColumnName="IdJugador" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFTLiga">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTLiga">
+              <MappingFragment StoreEntitySet="LFTLiga">
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="CodigoUsuarioModifico" ColumnName="CodigoUsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="CodigoUsuarioInserto" ColumnName="CodigoUsuarioInserto" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PresupuestoInicial" ColumnName="PresupuestoInicial" />
+                <ScalarProperty Name="EditarPlantilla" ColumnName="EditarPlantilla" />
+                <ScalarProperty Name="Editable" ColumnName="Editable" />
+                <ScalarProperty Name="CantidadRondas" ColumnName="CantidadRondas" />
+                <ScalarProperty Name="UnidadRecurrencia" ColumnName="UnidadRecurrencia" />
+                <ScalarProperty Name="CantidadRecurrencia" ColumnName="CantidadRecurrencia" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="Publico" ColumnName="Publico" />
+                <ScalarProperty Name="IdInstitucion" ColumnName="IdInstitucion" />
+                <ScalarProperty Name="CodigoUsuarioAdministrador" ColumnName="CodigoUsuarioAdministrador" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFTMetricaCategoria">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTMetricaCategoria">
+              <MappingFragment StoreEntitySet="LFTMetricaCategoria">
+                <ScalarProperty Name="EsPorcentaje" ColumnName="EsPorcentaje" />
+                <ScalarProperty Name="Valuacion" ColumnName="Valuacion" />
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="CodigoUsuarioModifico" ColumnName="CodigoUsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="CodigoUsuarioInserto" ColumnName="CodigoUsuarioInserto" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Positivo" ColumnName="Positivo" />
+                <ScalarProperty Name="Puntos" ColumnName="Puntos" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFTMiembroEquipoLiga">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTMiembroEquipoLiga">
+              <MappingFragment StoreEntitySet="LFTMiembroEquipoLiga">
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="CodigoUsuarioModifico" ColumnName="CodigoUsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="CodigoUsuarioInserto" ColumnName="CodigoUsuarioInserto" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="IdEquipo" ColumnName="IdEquipo" />
+                <ScalarProperty Name="IdJugadorLiga" ColumnName="IdJugadorLiga" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFTPermiso">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTPermiso">
+              <MappingFragment StoreEntitySet="LFTPermiso">
+                <ScalarProperty Name="Llave" ColumnName="Llave" />
+                <ScalarProperty Name="Icono" ColumnName="Icono" />
+                <ScalarProperty Name="CodigoPermisoAgrupacion" ColumnName="CodigoPermisoAgrupacion" />
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Permiso" ColumnName="Permiso" />
+                <ScalarProperty Name="CodigoPermiso" ColumnName="CodigoPermiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFTResultadoRonda">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTResultadoRonda">
+              <MappingFragment StoreEntitySet="LFTResultadoRonda">
+                <ScalarProperty Name="ValorObtenido" ColumnName="ValorObtenido" />
+                <ScalarProperty Name="Puntos" ColumnName="Puntos" />
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="CodigoUsuarioModifico" ColumnName="CodigoUsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="CodigoUsuarioInserto" ColumnName="CodigoUsuarioInserto" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Resultado" ColumnName="Resultado" />
+                <ScalarProperty Name="IdMetrica" ColumnName="IdMetrica" />
+                <ScalarProperty Name="IdJugadorLiga" ColumnName="IdJugadorLiga" />
+                <ScalarProperty Name="IdRonda" ColumnName="IdRonda" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFTRolPermiso">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTRolPermiso">
+              <MappingFragment StoreEntitySet="LFTRolPermiso">
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="CodigoPermiso" ColumnName="CodigoPermiso" />
+                <ScalarProperty Name="CodigoRol" ColumnName="CodigoRol" />
+                <ScalarProperty Name="CodigoRolPermiso" ColumnName="CodigoRolPermiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFTRolUsuario">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTRolUsuario">
+              <MappingFragment StoreEntitySet="LFTRolUsuario">
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="CodigoRol" ColumnName="CodigoRol" />
+                <ScalarProperty Name="CodigoUsuario" ColumnName="CodigoUsuario" />
+                <ScalarProperty Name="CodigoRolUsuario" ColumnName="CodigoRolUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFTRondaLiga">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTRondaLiga">
+              <MappingFragment StoreEntitySet="LFTRondaLiga">
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="CodigoUsuarioModifico" ColumnName="CodigoUsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="CodigoUsuarioInserto" ColumnName="CodigoUsuarioInserto" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="NumeroRonda" ColumnName="NumeroRonda" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="IdLiga" ColumnName="IdLiga" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFTUsuario">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTUsuario">
+              <MappingFragment StoreEntitySet="LFTUsuario">
+                <ScalarProperty Name="IdInstitucion" ColumnName="IdInstitucion" />
+                <ScalarProperty Name="UsuarioAD" ColumnName="UsuarioAD" />
+                <ScalarProperty Name="NecesitaCambioDeClave" ColumnName="NecesitaCambioDeClave" />
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="CodigoUsuarioModifico" ColumnName="CodigoUsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="CodigoUsuarioInserto" ColumnName="CodigoUsuarioInserto" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="AutenticacionWindows" ColumnName="AutenticacionWindows" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="NombreCompletoUsuario" ColumnName="NombreCompletoUsuario" />
+                <ScalarProperty Name="CodigoUsuario" ColumnName="CodigoUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="LFPListarResultadoJugadorRonda" FunctionName="dbLigaFantasiaModel.Store.LFPListarResultadoJugadorRonda">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbLigaFantasiaModel.LFPListarResultadoJugadorRonda_Result">
+                <ScalarProperty Name="IdMetrica" ColumnName="IdMetrica" />
+                <ScalarProperty Name="NombreMetrica" ColumnName="NombreMetrica" />
+                <ScalarProperty Name="Resultado" ColumnName="Resultado" />
+                <ScalarProperty Name="NombreCategoria" ColumnName="NombreCategoria" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Puntos" ColumnName="Puntos" />
+                <ScalarProperty Name="Positivo" ColumnName="Positivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LFPLigasDisponiblesEntrenadorListar" FunctionName="dbLigaFantasiaModel.Store.LFPLigasDisponiblesEntrenadorListar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbLigaFantasiaModel.LFPLigasDisponiblesEntrenadorListar_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="NombreCompletoUsuario" ColumnName="NombreCompletoUsuario" />
+                <ScalarProperty Name="Publico" ColumnName="Publico" />
+                <ScalarProperty Name="CantidadRondas" ColumnName="CantidadRondas" />
+                <ScalarProperty Name="Editable" ColumnName="Editable" />
+                <ScalarProperty Name="EditarPlantilla" ColumnName="EditarPlantilla" />
+                <ScalarProperty Name="PresupuestoInicial" ColumnName="PresupuestoInicial" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LFPTopDetalleResultadoJugadoresListar" FunctionName="dbLigaFantasiaModel.Store.LFPTopDetalleResultadoJugadoresListar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbLigaFantasiaModel.LFPTopDetalleResultadoJugadoresListar_Result">
+                <ScalarProperty Name="NumeroRonda" ColumnName="NumeroRonda" />
+                <ScalarProperty Name="IdJugadorLiga" ColumnName="IdJugadorLiga" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="NombreMetrica" ColumnName="NombreMetrica" />
+                <ScalarProperty Name="ResultadoMetrica" ColumnName="ResultadoMetrica" />
+                <ScalarProperty Name="TotalPuntos" ColumnName="TotalPuntos" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LFPTopJugadoresListar" FunctionName="dbLigaFantasiaModel.Store.LFPTopJugadoresListar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbLigaFantasiaModel.LFPTopJugadoresListar_Result">
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="IdJugadorLiga" ColumnName="IdJugadorLiga" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="TotalPuntos" ColumnName="TotalPuntos" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LFPValidacionCierreRondaListar" FunctionName="dbLigaFantasiaModel.Store.LFPValidacionCierreRondaListar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbLigaFantasiaModel.LFPValidacionCierreRondaListar_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="LFTHistoriaPrecioRondaJugador">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTHistoriaPrecioRondaJugador">
+              <MappingFragment StoreEntitySet="LFTHistoriaPrecioRondaJugador">
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="CodigoUsuarioModifico" ColumnName="CodigoUsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="CodigoUsuarioInserto" ColumnName="CodigoUsuarioInserto" />
+                <ScalarProperty Name="PrecioFinal" ColumnName="PrecioFinal" />
+                <ScalarProperty Name="PrecioInicial" ColumnName="PrecioInicial" />
+                <ScalarProperty Name="IdRonda" ColumnName="IdRonda" />
+                <ScalarProperty Name="IdJugadorLiga" ColumnName="IdJugadorLiga" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="LFPCerrarRonda" FunctionName="dbLigaFantasiaModel.Store.LFPCerrarRonda" />
+          <EntitySetMapping Name="ActiveDirectory">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.ActiveDirectory">
+              <MappingFragment StoreEntitySet="ActiveDirectory">
+                <ScalarProperty Name="DPI" ColumnName="DPI" />
+                <ScalarProperty Name="CodigoScilu" ColumnName="CodigoScilu" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Puesto" ColumnName="Puesto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFTPlantillaCorreo">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTPlantillaCorreo">
+              <MappingFragment StoreEntitySet="LFTPlantillaCorreo">
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="CCO" ColumnName="CCO" />
+                <ScalarProperty Name="Remitente" ColumnName="Remitente" />
+                <ScalarProperty Name="Asunto" ColumnName="Asunto" />
+                <ScalarProperty Name="Plantilla" ColumnName="Plantilla" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CodigoPlantillaCorreo" ColumnName="CodigoPlantillaCorreo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFTRol">
+            <EntityTypeMapping TypeName="dbLigaFantasiaModel.LFTRol">
+              <MappingFragment StoreEntitySet="LFTRol">
+                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
+                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
+                <ScalarProperty Name="FechaInserto" ColumnName="FechaInserto" />
+                <ScalarProperty Name="UsuarioInserto" ColumnName="UsuarioInserto" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="CodigoRol" ColumnName="CodigoRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
