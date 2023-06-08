@@ -7,6 +7,8 @@ AsignacionRecursoController.cs
 OnboardingModels.cs
 SingletonDemo.cs
 
+patrones de diseño utilicé patrón singleton como unica instancia para toda la aplicación. Se utilizó para hacer un logger de errores que se envían poe email. Esto se pueve verificar en el archivo SingletonDemo
+Estructura de datos: Se utilizaron listas, (clases Plain Object Csharp)
 frontend cubre los siguientes elementos:
 HTML
 Javascript
